@@ -31,10 +31,10 @@ libed: $(LIB_OBJ)
 # Regra para compilar múltiplos aplicativos
 myapps: clean_apps $(APPS_BIN)
 
-$(OBJ)/%.o: $(SRC)/%.c $(INCLUDE)/%.h libed
+$(OBJ)/%.o: $(SRC)/%.c $(INCLUDE)/%.h
 	gcc $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
-$(BIN)/%: $(APPS)/%.c libed
+$(BIN)/%: $(APPS)/%.c
 	gcc $(FLAGS) $< $(LIBS) -I $(INCLUDE) -o $@
 
 # Geração automática de dependências de cabeçalhos

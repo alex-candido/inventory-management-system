@@ -1,0 +1,2 @@
+product.o: src/product.c include/product.h
+stock.o: src/stock.c include/stock.h
