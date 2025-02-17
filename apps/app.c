@@ -1,142 +1,61 @@
+#include <gtk/gtk.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include "product.h"
-#include "stock.h"
+#include "views/layouts/main_layout.h"
 
-int main()
+void load_css(const char *css_file)
 {
-  int option;
+  GtkCssProvider *css_provider = gtk_css_provider_new();
+  GError *error = NULL;
 
-  printf("Welcome to the Inventory Management System\n");
-  printf("1. Manage Products\n");
-  printf("2. Manage Stock\n");
-  printf("3. Exit\n");
-
-  if (scanf("%d", &option) != 1)
+  // Verifica se o caminho do arquivo está correto
+  if (!gtk_css_provider_load_from_path(css_provider, css_file, &error))
   {
-    printf("Invalid input. Exiting.\n");
-    return 1;
+    fprintf(stderr, "Erro ao carregar CSS: %s\n", error->message);
+    g_error_free(error);
+    return;
   }
 
-  if (option == 1)
-  {
-    int product_option;
-    printf("1. Create Product\n");
-    printf("2. Read Products\n");
-    printf("3. Update Product\n");
-    printf("4. Delete Product\n");
-    printf("5. Exit\n");
-    if (scanf("%d", &product_option) != 1)
-    {
-      printf("Invalid input. Exiting.\n");
-      return 1;
-    }
+  // Adiciona o CSS ao contexto de estilo da tela
+  gtk_style_context_add_provider_for_screen(gdk_screen_get_default(),
+                                            GTK_STYLE_PROVIDER(css_provider),
+                                            GTK_STYLE_PROVIDER_PRIORITY_USER);
 
-    if (product_option == 1)
-    {
-      char name[255], category[255];
-      double price;
-      printf("Enter product name: ");
-      if (scanf("%254s", name) != 1)
-        return 1;
-      printf("Enter product category: ");
-      if (scanf("%254s", category) != 1)
-        return 1;
-      printf("Enter product price: ");
-      if (scanf("%lf", &price) != 1)
-        return 1;
-      create_product(name, category, price);
-    }
-    else if (product_option == 2)
-    {
-      read_products();
-    }
-    else if (product_option == 3)
-    {
-      int id;
-      char name[255], category[255];
-      double price;
-      printf("Enter product ID to update: ");
-      if (scanf("%d", &id) != 1)
-        return 1;
-      printf("Enter new product name: ");
-      if (scanf("%254s", name) != 1)
-        return 1;
-      printf("Enter new product category: ");
-      if (scanf("%254s", category) != 1)
-        return 1;
-      printf("Enter new product price: ");
-      if (scanf("%lf", &price) != 1)
-        return 1;
-      update_product(id, name, category, price);
-    }
-    else if (product_option == 4)
-    {
-      int id;
-      printf("Enter product ID to delete: ");
-      if (scanf("%d", &id) != 1)
-        return 1;
-      delete_product(id);
-    }
-  }
-  else if (option == 2)
-  {
-    int stock_option;
-    printf("1. Create Stock\n");
-    printf("2. Read Stock\n");
-    printf("3. Update Stock\n");
-    printf("4. Delete Stock\n");
-    printf("5. Exit\n");
-    if (scanf("%d", &stock_option) != 1)
-      return 1;
+  g_object_unref(css_provider);
+}
 
-    if (stock_option == 1)
-    {
-      int product_id, quantity;
-      char location[255];
-      printf("Enter product ID: ");
-      if (scanf("%d", &product_id) != 1)
-        return 1;
-      printf("Enter quantity: ");
-      if (scanf("%d", &quantity) != 1)
-        return 1;
-      printf("Enter stock location: ");
-      if (scanf("%254s", location) != 1)
-        return 1;
-      create_stock(product_id, quantity, location);
-    }
-    else if (stock_option == 2)
-    {
-      int product_id;
-      printf("Enter product ID to view stock: ");
-      if (scanf("%d", &product_id) != 1)
-        return 1;
-      read_stock(product_id);
-    }
-    else if (stock_option == 3)
-    {
-      int product_id, quantity;
-      char location[255];
-      printf("Enter product ID to update stock: ");
-      if (scanf("%d", &product_id) != 1)
-        return 1;
-      printf("Enter new quantity: ");
-      if (scanf("%d", &quantity) != 1)
-        return 1;
-      printf("Enter new location: ");
-      if (scanf("%254s", location) != 1)
-        return 1;
-      update_stock(product_id, quantity, location);
-    }
-    else if (stock_option == 4)
-    {
-      int product_id;
-      printf("Enter product ID to delete stock: ");
-      if (scanf("%d", &product_id) != 1)
-        return 1;
-      delete_stock(product_id);
-    }
-  }
+// Função de inicialização da aplicação
+static void app_init(GtkApplication *app)
+{
+  GtkWidget *window;
 
-  return 0;
+  // Cria a janela principal
+  window = gtk_application_window_new(app);
+
+  gtk_window_set_title(GTK_WINDOW(window), "Inventory Management");
+  gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
+
+  load_css("assets/stylesheets/app.css");
+
+  // Cria o layout padrão
+  create_main_layout(window);
+
+  // Exibe a janela
+  gtk_widget_show_all(window);
+}
+// Função principal
+int main(int argc, char *argv[])
+{
+  GtkApplication *app;
+  int status;
+
+  // Inicializa o GTK
+  app = gtk_application_new("com.example.InventoryApp", G_APPLICATION_DEFAULT_FLAGS);
+  // Conecta a função de inicialização
+  g_signal_connect(app, "activate", G_CALLBACK(app_init), NULL);
+
+  // Executa a aplicação
+  status = g_application_run(G_APPLICATION(app), argc, argv);
+
+  g_object_unref(app);
+  return status;
 }

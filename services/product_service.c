@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "product.h"
+#include "../include/services/product_service.h"
 
 #define PRODUCT_FILE "data/products.csv"
 

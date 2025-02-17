@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "stock.h"
+#include "../include/services/stock_service.h"
 
 #define STOCK_FILE "data/stock.csv"
 

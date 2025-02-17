@@ -1,0 +1,12 @@
+
+views/layouts/main_layout layout da aplicação onde vamos, daqui vou poder ir para as pagina dashboard/index_view, products/index_view e stocks/index_view
+
+views/dashboard/index_view é a rota padrão onde vamos ter reports
+
+views/products/index_view vamos poder acessar as views de views/products/show_view, views/products/new_view e views/products/show_edit
+
+views/products/stock_view vamos poder acessar as views de views/stock/show_view, views/stock/new_view e views/stock/show_edit
+
+
+
+
