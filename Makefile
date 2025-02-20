@@ -15,6 +15,10 @@ OBJ = ./obj
 SERVICES = ./services
 VIEWS = ./views
 
+# Subdiretórios de services
+PRODUCT_SERVICES = $(SERVICES)/product
+STOCK_SERVICES = $(SERVICES)/stock
+
 # Subdiretórios de Views
 DASHBOARD = $(VIEWS)/dashboard
 LAYOUTS = $(VIEWS)/layouts
@@ -34,21 +38,27 @@ LDFLAGS = -lm -L$(LIB) -led $(GTK_LIBS)
 
 # Arquivos Fonte
 APPS_SRC = $(wildcard $(APPS)/*.c)
-SERVICES_SRC = $(wildcard $(SERVICES)/*.c)
+PRODUCT_SERVICES_SRC = $(wildcard $(PRODUCT_SERVICES)/*.c)
+STOCK_SERVICES_SRC = $(wildcard $(STOCK_SERVICES)/*.c)
 DASHBOARD_SRC = $(wildcard $(DASHBOARD)/*.c)
 LAYOUTS_SRC = $(wildcard $(LAYOUTS)/*.c)
 PRODUCT_VIEWS_SRC = $(wildcard $(PRODUCT_VIEWS)/*.c)
 STOCK_VIEWS_SRC = $(wildcard $(STOCK_VIEWS)/*.c)
 
 # Estrutura de diretórios para objetos
-OBJ_DIRS = $(OBJ)/services \
+OBJ_DIRS = $(OBJ)/services/product \
+           $(OBJ)/services/stock \
            $(OBJ)/views/dashboard \
            $(OBJ)/views/layouts \
            $(OBJ)/views/product \
            $(OBJ)/views/stock
 
 # Objetos
-SERVICES_OBJ = $(patsubst $(SERVICES)/%.c, $(OBJ)/services/%.o, $(SERVICES_SRC))
+PRODUCT_SERVICES_OBJ = $(patsubst $(PRODUCT_SERVICES)/%.c, $(OBJ)/services/product/%.o, $(PRODUCT_SERVICES_SRC)) # Correct paths
+STOCK_SERVICES_OBJ = $(patsubst $(STOCK_SERVICES)/%.c, $(OBJ)/services/stock/%.o, $(STOCK_SERVICES_SRC))     # Correct paths
+
+SERVICES_OBJ = $(PRODUCT_SERVICES_OBJ) $(STOCK_SERVICES_OBJ) # COMBINED!
+
 DASHBOARD_OBJ = $(patsubst $(DASHBOARD)/%.c, $(OBJ)/views/dashboard/%.o, $(DASHBOARD_SRC))
 LAYOUTS_OBJ = $(patsubst $(LAYOUTS)/%.c, $(OBJ)/views/layouts/%.o, $(LAYOUTS_SRC))
 PRODUCT_VIEWS_OBJ = $(patsubst $(PRODUCT_VIEWS)/%.c, $(OBJ)/views/product/%.o, $(PRODUCT_VIEWS_SRC))
@@ -71,7 +81,10 @@ libed: $(ALL_OBJ)
 	ar -rcs $(LIB)/libed.a $(ALL_OBJ)
 
 # Regras específicas para compilação de objetos
-$(OBJ)/services/%.o: $(SERVICES)/%.c
+$(OBJ)/services/product/%.o: $(PRODUCT_SERVICES)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ)/services/stock/%.o: $(STOCK_SERVICES)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ)/views/dashboard/%.o: $(DASHBOARD)/%.c
@@ -99,7 +112,7 @@ DEPENDENCIES = $(OBJ)/.dependencies
 # Gera as dependências de cabeçalhos
 $(DEPENDENCIES): $(ALL_OBJ)
 	@mkdir -p $(OBJ)
-	@$(CC) -MM $(SERVICES_SRC) $(DASHBOARD_SRC) $(LAYOUTS_SRC) $(PRODUCT_VIEWS_SRC) $(STOCK_VIEWS_SRC) \
+	@$(CC) -MM $(PRODUCT_SERVICES_SRC) $(STOCK_SERVICES_SRC) $(DASHBOARD_SRC) $(LAYOUTS_SRC) $(PRODUCT_VIEWS_SRC) $(STOCK_VIEWS_SRC) \
 		-I $(INCLUDE) $(GTK_CFLAGS) | sed 's|^\(.*\)\.o:|$(OBJ)/\1.o:|' > $(DEPENDENCIES)
 
 # Executar o aplicativo

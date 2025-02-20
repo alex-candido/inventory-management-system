@@ -2,8 +2,8 @@
 #define PRODUCT_EDIT_VIEW_H
 
 #include <gtk/gtk.h>
+#include "services/product/read_product_service.h"
 
-// Declaração da função para exibir a edição de produtos
-void show_product_edit(GtkWidget *content_area);
+void show_product_edit(GtkWidget *content_area, Product *product);
 
 #endif // PRODUCT_EDIT_VIEW_H

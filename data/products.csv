@@ -1,5 +1,32 @@
-id,name,category,price
-1,Smartphone,Eletrônicos,1500.00
-2,Tablet,Eletrônicos,1000.00
-3,Laptop,Computadores,3000.00
-383,smartwatch,eletrônicos,500.00
+id,name,category,description,price,quantity,status,created_at,updated_at
+1,Produto A,Categoria A,Descrição do produto A,10.00,10,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+2,Produto B,Categoria B,Descrição do produto B,20.00,11,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+3,Produto C,Categoria C,Descrição do produto C,30.00,12,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+4,Produto D,Categoria D,Descrição do produto D,40.00,13,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+5,Produto E,Categoria A,Descrição do produto E,50.00,14,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+6,Produto F,Categoria B,Descrição do produto F,60.00,15,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+7,Produto G,Categoria C,Descrição do produto G,70.00,16,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+8,Produto H,Categoria D,Descrição do produto H,80.00,17,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+9,Produto I,Categoria A,Descrição do produto I,90.00,18,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+10,Produto J,Categoria B,Descrição do produto J,100.00,19,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+11,Produto K,Categoria C,Descrição do produto K,110.00,20,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+12,Produto L,Categoria D,Descrição do produto L,120.00,21,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+13,Produto M,Categoria A,Descrição do produto M,130.00,22,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+14,Produto N,Categoria B,Descrição do produto N,140.00,23,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+15,Produto O,Categoria C,Descrição do produto O,150.00,24,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+16,Produto P,Categoria D,Descrição do produto P,160.00,25,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+17,Produto Q,Categoria A,Descrição do produto Q,170.00,26,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+18,Produto R,Categoria B,Descrição do produto R,180.00,27,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+19,Produto S,Categoria C,Descrição do produto S,190.00,28,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+20,Produto T,Categoria D,Descrição do produto T,200.00,29,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+21,Produto U,Categoria A,Descrição do produto U,210.00,30,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+22,Produto V,Categoria B,Descrição do produto V,220.00,31,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+23,Produto W,Categoria C,Descrição do produto W,230.00,32,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+24,Produto X,Categoria D,Descrição do produto X,240.00,33,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+25,Produto Y,Categoria A,Descrição do produto Y,250.00,34,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+26,Produto Z,Categoria B,Descrição do produto Z,260.00,35,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+27,Produto AA,Categoria C,Descrição do produto AA,270.00,36,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+28,Produto BB,Categoria D,Descrição do produto BB,280.00,37,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+29,Produto CC,Categoria A,Descrição do produto CC,290.00,38,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+30,Produto DD,Categoria B,Descrição do produto DD,300.00,39,1,2025-02-19 12:00:00,2025-02-19 12:00:00
+31,Produto EE,Categoria C,Descrição do produto EE,310.00,40,1,2025-02-19 12:00:00,2025-02-19 12:00

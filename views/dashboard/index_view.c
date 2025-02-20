@@ -1,5 +1,5 @@
 #include <gtk/gtk.h>
-#include "../../include/views/dashboard/index_view.h"
+#include "views/dashboard/index_view.h"
 
 // Função para exibir o dashboard
 void show_dashboard(GtkWidget *content_area)

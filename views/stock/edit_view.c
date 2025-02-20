@@ -1,5 +1,5 @@
 #include <gtk/gtk.h>
-#include "../../include/views/stock/edit_view.h"
+#include "views/stock/edit_view.h"
 
 // Função para exibir a edição de estoque
 void show_stock_edit(GtkWidget *content_area)

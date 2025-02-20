@@ -2,27 +2,6 @@
 #include <stdio.h>
 #include "views/layouts/main_layout.h"
 
-void load_css(const char *css_file)
-{
-  GtkCssProvider *css_provider = gtk_css_provider_new();
-  GError *error = NULL;
-
-  // Verifica se o caminho do arquivo está correto
-  if (!gtk_css_provider_load_from_path(css_provider, css_file, &error))
-  {
-    fprintf(stderr, "Erro ao carregar CSS: %s\n", error->message);
-    g_error_free(error);
-    return;
-  }
-
-  // Adiciona o CSS ao contexto de estilo da tela
-  gtk_style_context_add_provider_for_screen(gdk_screen_get_default(),
-                                            GTK_STYLE_PROVIDER(css_provider),
-                                            GTK_STYLE_PROVIDER_PRIORITY_USER);
-
-  g_object_unref(css_provider);
-}
-
 // Função de inicialização da aplicação
 static void app_init(GtkApplication *app)
 {
@@ -33,8 +12,6 @@ static void app_init(GtkApplication *app)
 
   gtk_window_set_title(GTK_WINDOW(window), "Inventory Management");
   gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
-
-  load_css("assets/stylesheets/app.css");
 
   // Cria o layout padrão
   create_main_layout(window);
