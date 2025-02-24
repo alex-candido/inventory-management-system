@@ -1,21 +1,49 @@
-build
-*.d
+# Build artifacts
+bin/
+obj/
 *.o
+*.a
+*.so
+*.dll
+*.dylib
 
-cscope.out
-cscope.out.in
-cscope.out.po
-tags
-TAGS
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-coverage
-coverage.info
-*.gcno
-*.gcda
+# System files
+.DS_Store
+Thumbs.db
 
-gmon.out
-gprof.out
+# Project specific
+data/*.dat
+!data/seeds/
 
-src/foo-test
-libfoo.a
-libbar.a
+# Dependency directories
+lib/
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Temporary files
+*.tmp
+*.temp
+.history/
+
+# Environment files
+.env
+.env.local
+
+# Log files
+*.log
+
+# Backup files
+*.bak
+*.backup
+*.old
