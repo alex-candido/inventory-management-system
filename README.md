@@ -1,97 +1,146 @@
 # Inventory Management System - C - IFCE
 
+<a href="https://learn.microsoft.com/pt-br/cpp/c-language/?view=msvc-170" target="_blank"><code><img height="45" title="c" src="https://skillicons.dev/icons?i=c" /></code></a>
+<a href="https://cmake.org/" target="_blank"><code><img height="45" title="cmake" src="https://skillicons.dev/icons?i=cmake" /></code></a>
+<a href="https://www.gtk.org/" target="_blank"><code><img height="45" title="gtk" src="https://skillicons.dev/icons?i=gtk" /></code></a>
+<a href="https://learn.microsoft.com/pt-br/cpp/c-language/?view=msvc-170" target="_blank"><code><img height="45" title="cc" src="https://skillicons.dev/icons?i=css" /></code></a>
+
 ## About
-A robust inventory management system developed in C using GTK for the graphical user interface. This system allows users to manage products, track stock levels, and generate various reports for effective inventory control.
+Um sistema robusto de gerenciamento de inventário desenvolvido em C utilizando GTK para a interface gráfica do usuário. Este sistema permite aos usuários gerenciar produtos, controlar níveis de estoque e gerar vários relatórios para um controle efetivo de inventário.
 
 ## Getting Started
-This section provides instructions on how to set up and run the inventory management system on your local machine.
+Esta seção fornece instruções sobre como configurar e executar o sistema de gerenciamento de inventário em sua máquina local.
+
+## Seed Data
+O sistema utiliza dados iniciais (seed) para popular o banco de dados com informações de exemplo:
+
+- `data/seeds/products.csv`: Contém dados iniciais dos produtos
+  - Formato: ID, Nome, Descrição, Preço, Quantidade Mínima
+- `data/seeds/stocks.csv`: Contém dados iniciais do estoque
+  - Formato: ID do Produto, Quantidade, Data de Entrada, Localização
+
+Os dados seed são carregados automaticamente na primeira execução do sistema ou quando o banco de dados está vazio.
 
 ## Project Structure
 ```
-- apps/          # Main application entry point
-- assets/        # CSS styles and other assets
-- bin/           # Compiled binaries
-- data/          # Data storage and seed files
-- include/       # Header files
-- lib/           # Static libraries
-- services/      # Business logic implementation
-- views/         # UI components and views
+- apps/          # Ponto de entrada principal da aplicação
+- assets/        # Estilos CSS e outros recursos
+- bin/           # Binários compilados
+- data/          # Armazenamento de dados e arquivos seed
+- include/       # Arquivos de cabeçalho
+- lib/           # Bibliotecas estáticas
+- services/      # Implementação da lógica de negócios
+- views/         # Componentes e visualizações da UI
 ```
 
 ## Initial Configuration
-1. Ensure you have all required dependencies installed
-2. Configure the data directory permissions
-3. Set up the development environment
+1. Certifique-se de ter todas as dependências necessárias instaladas
+2. Configure as permissões do diretório de dados
+3. Configure o ambiente de desenvolvimento
 
 ## Compilation and Execution
-1. Build the project using make:
+1. Compile o projeto usando make:
 ```bash
 make
 ```
-2. Run the application:
+2. Execute a aplicação:
 ```bash
 ./bin/app
 ```
 
 ## System Feature Mapping
 - **Dashboard**
-  - Overview of total products
-  - Stock entry count
-  - Total items in stock
-  - Total stock value
-  - Low stock alerts
+  - Visão geral do total de produtos
+  - Contagem de entradas no estoque
+  - Total de itens em estoque
+  - Valor total do estoque
+  - Alertas de baixo estoque
 
 - **Product Management**
-  - Add new products
-  - Edit existing products
-  - View product details
-  - Delete products
+  - Adicionar novos produtos
+  - Editar produtos existentes
+  - Visualizar detalhes do produto
+  - Excluir produtos
 
 - **Stock Management**
-  - Record stock entries
-  - Track stock movements
-  - Manage stock locations
+  - Registrar entradas de estoque
+  - Acompanhar movimentações de estoque
+  - Gerenciar localizações de estoque
 
 - **Reporting**
-  - Out of stock products
-  - Products by location
-  - Recently added products
-  - Category-wise statistics
-  - Stock valuation
+  - Produtos fora de estoque
+  - Produtos por localização
+  - Produtos recentemente adicionados
+  - Estatísticas por categoria
+  - Avaliação de estoque
 
 ## Approaches
-- **Data Storage**: Binary file-based storage for products and stock data
-- **UI Framework**: GTK3 for creating a responsive and user-friendly interface
-- **Architecture**: Modular design with separation of concerns
-  - Services layer for business logic
-  - Views layer for UI components
-  - Data layer for storage operations
+- **Data Storage**: Armazenamento baseado em arquivos binários para dados de produtos e estoque
+- **UI Framework**: GTK3 para criar uma interface responsiva e amigável
+- **Architecture**: Design modular com separação de responsabilidades
+  - Camada de serviços para lógica de negócios
+  - Camada de visualização para componentes da UI
+  - Camada de dados para operações de armazenamento
 
 ## Dependencies
-- GTK 3.0 or higher
+- GTK 3.0 ou superior
 - GCC compiler
 - Make build system
 
 ## Requirements
-- Linux-based operating system (Ubuntu recommended)
-- GTK development libraries
-- C development tools
+- Sistema operacional baseado em Linux (Ubuntu recomendado)
+- Bibliotecas de desenvolvimento GTK
+- Ferramentas de desenvolvimento C
 
 ## Starting the Application
-1. Clone the repository
-2. Install dependencies:
+1. Clone o repositório
+2. Instale as dependências:
 ```bash
 sudo apt-get install build-essential
 sudo apt-get install libgtk-3-dev
 ```
-3. Build the project:
+
+3. Compile o projeto usando os comandos do Makefile:
+
+### Comandos do Makefile Disponíveis
 ```bash
+# Compilação completa do projeto
+make all
+
+# Compilação rápida (apenas arquivos modificados)
 make
+
+# Limpar arquivos compilados
+make clean
+
+# Recompilar todo o projeto
+make rebuild
+
+# Compilar em modo debug
+make debug
+
+# Executar testes
+make test
 ```
-4. Run the application:
+
+### Detalhes dos Comandos
+- `make all`: Compila todo o projeto, incluindo bibliotecas e executável principal
+- `make`: Compilação incremental (recompila apenas arquivos modificados)
+- `make clean`: Remove todos os arquivos compilados e temporários
+- `make rebuild`: Executa clean seguido de all para recompilar todo o projeto
+- `make debug`: Compila com símbolos de debug para uso com GDB
+- `make test`: Executa a suite de testes do projeto
+
+4. Execute a aplicação:
 ```bash
 ./bin/app
 ```
 
+### Observações Importantes
+- Certifique-se de que todas as dependências estão instaladas antes de compilar
+- Em caso de erros de compilação, execute `make clean` seguido de `make all`
+- Para desenvolvimento, recomenda-se usar `make debug` para incluir informações de debug
+- Os arquivos compilados são armazenados no diretório `bin/`
+
 ## License
-This project is part of the academic curriculum at IFCE (Federal Institute of Education, Science and Technology of Ceará).
+Este projeto é parte do currículo acadêmico do IFCE (Instituto Federal de Educação, Ciência e Tecnologia do Ceará).
